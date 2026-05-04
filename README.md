@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+[![Deploy to GitHub Pages](https://github.com/k8port/sudoku-app/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/k8port/sudoku-app/actions/workflows/deploy-pages.yml)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -43,22 +45,17 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 This app is configured for GitHub Pages deployment with relative asset paths.
 
-### One-time setup
+### Recommended: GitHub Actions deploy (auto on push)
 
-1. Create an empty GitHub repository for this project.
-2. Add it as your git remote:
+1. Push this repo to GitHub.
+2. In GitHub: Settings -> Pages -> Build and deployment -> Source: `GitHub Actions`.
+3. Push to `main`.
 
-```bash
-git remote add origin https://github.com/<your-username>/<your-repo>.git
-git branch -M main
-git push -u origin main
-```
+The workflow at `.github/workflows/deploy-pages.yml` builds the app and deploys the `build` folder (not the repository root).
 
-3. In GitHub, open your repository settings:
-	Settings -> Pages -> Build and deployment -> Source: Deploy from a branch.
-4. Branch: `gh-pages` and folder: `/ (root)`.
+If your site currently shows README content, it means Pages is publishing a branch/folder instead of the React build artifact. Switching Pages Source to `GitHub Actions` fixes that.
 
-### Deploy command
+### Alternative: manual `gh-pages` branch deploy
 
 Run:
 
@@ -66,11 +63,9 @@ Run:
 npm run deploy
 ```
 
-That command builds the app and publishes the `build` folder to the `gh-pages` branch.
+Then set Pages Source to `Deploy from a branch`, branch `gh-pages`, folder `/ (root)`.
 
 ### Site URL
-
-Your live URL will be:
 
 ```text
 https://<your-username>.github.io/<your-repo>/
