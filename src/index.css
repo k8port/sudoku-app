@@ -1,0 +1,327 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700&family=Barlow:wght@400;600;700&family=Bebas+Neue&family=Cabin:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=Exo+2:wght@400;600;700&family=Fira+Sans:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600;700&family=Inconsolata:wght@400;600;700&family=Indie+Flower&family=Inter+Tight:wght@400;600;700&family=JetBrains+Mono:wght@400;700&family=Josefin+Sans:wght@400;600;700&family=Karla:wght@400;600;700&family=Manrope:wght@400;600;700&family=Merriweather+Sans:wght@400;600;700&family=Montserrat:wght@400;600;700&family=Mulish:wght@400;600;700&family=Nunito:wght@400;600;700&family=Oswald:wght@400;600;700&family=Poppins:wght@400;600;700&family=PT+Sans:wght@400;700&family=Quicksand:wght@400;600;700&family=Raleway:wght@400;600;700&family=Rubik:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&family=Teko:wght@400;500;700&family=Titillium+Web:wght@400;600;700&family=Ubuntu:wght@400;500;700&family=Work+Sans:wght@400;600;700&display=swap");
+
+:root {
+  --app-font: "Space Grotesk", sans-serif;
+  --bg: #f5f5ef;
+  --bg-accent: radial-gradient(circle at 15% 15%, #fff4cc, transparent 42%),
+    radial-gradient(circle at 85% 10%, #ffd5b9, transparent 35%),
+    linear-gradient(130deg, #f6f2e7 0%, #ece5d6 100%);
+  --text: #19212f;
+  --panel-bg: rgba(255, 255, 255, 0.8);
+  --panel-border: rgba(25, 33, 47, 0.18);
+  --button-bg: #19212f;
+  --button-text: #f8f8f8;
+  --button-soft-bg: rgba(25, 33, 47, 0.1);
+  --cell-bg: rgba(255, 255, 255, 0.8);
+  --cell-border: #566074;
+  --cell-note: #5f6472;
+  --cell-value: #121822;
+  --cell-initial: #6d3f00;
+  --shadow: 0 16px 38px rgba(25, 33, 47, 0.14);
+}
+
+body[data-theme="dark"] {
+  --bg: #101620;
+  --bg-accent: radial-gradient(circle at 20% 20%, #27345c, transparent 45%),
+    radial-gradient(circle at 80% 0%, #2f595f, transparent 38%),
+    linear-gradient(140deg, #0f1b2d 0%, #111822 100%);
+  --text: #edf5ff;
+  --panel-bg: rgba(17, 24, 34, 0.78);
+  --panel-border: rgba(237, 245, 255, 0.2);
+  --button-bg: #edf5ff;
+  --button-text: #101620;
+  --button-soft-bg: rgba(237, 245, 255, 0.14);
+  --cell-bg: rgba(17, 24, 34, 0.88);
+  --cell-border: #91a6c9;
+  --cell-note: #c9d8f2;
+  --cell-value: #f8fbff;
+  --cell-initial: #ffd796;
+  --shadow: 0 20px 44px rgba(0, 0, 0, 0.34);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-accent);
+  color: var(--text);
+  font-family: var(--app-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+}
+
+.settings-panel {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: min(18rem, calc(100vw - 1.5rem));
+  z-index: 40;
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(9px);
+  box-shadow: var(--shadow);
+  padding: 0.85rem;
+}
+
+.settings-title {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.settings-label {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.theme-toggle-btn,
+.settings-select,
+.toolbar-btn,
+.button-primary,
+.button-secondary {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font: inherit;
+}
+
+.theme-toggle-btn,
+.button-primary,
+.toolbar-btn {
+  background: var(--button-bg);
+  color: var(--button-text);
+  padding: 0.45rem 0.8rem;
+}
+
+.settings-select,
+.button-secondary {
+  background: var(--button-soft-bg);
+  color: var(--text);
+  border-color: var(--panel-border);
+  padding: 0.4rem 0.65rem;
+}
+
+.player-toggle input {
+  width: 1rem;
+  height: 1rem;
+}
+
+.home-page,
+.game-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4.75rem 1rem 1.75rem;
+  box-sizing: border-box;
+}
+
+.home-card,
+.game-panel {
+  width: min(100%, 42rem);
+  border: 1px solid var(--panel-border);
+  border-radius: 22px;
+  background: var(--panel-bg);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+
+.home-card {
+  padding: 2.2rem 1.4rem;
+  text-align: center;
+}
+
+.home-title {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+.home-subtitle {
+  margin: 0.7rem auto 1.4rem;
+  max-width: 30ch;
+  opacity: 0.8;
+}
+
+.game-panel {
+  padding: 1rem;
+}
+
+.game-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+
+.game-title {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.spotify-player-wrap {
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--panel-border);
+  background: var(--panel-bg);
+}
+
+.spotify-control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.7rem;
+}
+
+.spotify-control-row .button-secondary {
+  text-decoration: none;
+}
+
+.spotify-hint {
+  margin: 0;
+  padding: 0 0.7rem 0.6rem;
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+.spotify-iframe-host {
+  min-height: 152px;
+}
+
+.game-status {
+  margin: 0 0 0.9rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: rgba(63, 167, 255, 0.12);
+  font-size: 0.92rem;
+}
+
+.game-status.error {
+  background: rgba(255, 109, 94, 0.2);
+}
+
+.game-status.success {
+  background: rgba(81, 212, 160, 0.22);
+}
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+.cell {
+  width: clamp(2rem, 8vw, 3.25rem);
+  height: clamp(2rem, 8vw, 3.25rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cell-bg);
+  border-style: solid;
+  border-color: var(--cell-border);
+  color: var(--cell-value);
+  box-sizing: border-box;
+  user-select: none;
+  cursor: text;
+  outline: none;
+}
+
+.cell:focus-visible {
+  box-shadow: inset 0 0 0 2px #3fa7ff;
+}
+
+.cell:focus {
+  box-shadow: inset 0 0 0 3px #3fa7ff;
+  background: color-mix(in srgb, var(--cell-bg) 80%, #3fa7ff 20%);
+}
+
+.cell-initial {
+  color: var(--cell-initial);
+  font-weight: 700;
+}
+
+.cell-error {
+  background: rgba(255, 109, 94, 0.26);
+}
+
+.cell-note {
+  font-size: 0.68rem;
+  color: var(--cell-note);
+  line-height: 1.1;
+  text-align: center;
+  padding-inline: 0.1rem;
+}
+
+.cell-value {
+  font-size: clamp(1rem, 4.2vw, 1.4rem);
+}
+
+.toolbar {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.toolbar-numberpad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.toolbar-btn-small {
+  min-width: 2.25rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.toolbar-btn.active {
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 860px) {
+  .settings-panel {
+    position: static;
+    margin: 0.7rem auto 0;
+    width: min(95vw, 36rem);
+  }
+
+  .home-page,
+  .game-page {
+    padding-top: 1rem;
+  }
+}
